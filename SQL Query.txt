@@ -1,0 +1,52 @@
+CREATE View Department as
+WITH Project_status as
+(
+SELECT
+project_id,
+project_name,
+project_budget,
+'Upcoming' as status
+FROM Upcoming_projects
+Union All
+SELECT
+project_id,
+project_name,
+project_budget,
+'Completed' as status
+FROM Completed_projects)
+
+-- Main Fact Table --
+
+SELECT 
+e.employee_id,
+e.first_name,
+e.last_name,
+e.job_title,
+e.salary,
+d.Department_Name,
+d.Department_Budget,
+d.Department_Goals,
+pa.project_id,
+p.project_name,
+p.status,
+p.project_budget
+FROM Employees e
+LEFT JOIN Departments d
+ON e.department_id=d.Department_ID
+LEFT JOIN Project_assignments pa
+ON e.employee_id=pa.employee_id
+LEFT JOIN Project_status p
+ON pa.project_id=p.project_id
+
+CREATE VIEW cost AS
+SELECT 
+Department_Name,
+Department_Goals,
+SUM(Department_Budget) as Budget,
+sum(salary) as salary_cost,
+sum(project_budget) as project_cost,
+(SUM(Department_Budget) * 0.5) - ((SUM(salary) * 2) + SUM(project_budget)) AS capital
+FROM [Dpmt].[dbo].[Department]
+GROUP BY Department_Name,Department_Goals
+
+https://app.powerbi.com/reportEmbed?reportId=8036a2aa-d28a-44f3-ab5a-c1204d81e75e&autoAuth=true&ctid=b0dffc1b-b339-4959-a650-736db86c1043
