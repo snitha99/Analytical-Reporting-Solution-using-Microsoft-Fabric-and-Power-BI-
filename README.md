@@ -1,16 +1,24 @@
 **Project Overview**
+
 This project demonstrates an end-to-end data analytics solution built using Microsoft Fabric. 
 The goal of the project is to ingest raw data, transform it into a structured format, perform SQL-based analysis, and create interactive reports using Power BI.
 
 **Technologies Used**
-_Microsoft Fabric
-_Lakehouse
-_Data Warehouse
-_Dataflow Gen2
-_SQL (for querying and data transformation)
-_Power BI (for reporting and visualization)
+
+-Microsoft Fabric
+
+-Lakehouse
+
+-Data Warehouse
+
+-Dataflow Gen2
+
+-SQL (for querying and data transformation)
+
+-Power BI (for reporting and visualization)
 
 **Project Workflow**
+
 *Data Ingestion*
 _Raw data is ingested into Microsoft Fabric Lakehouse using Dataflow Gen2.
 
